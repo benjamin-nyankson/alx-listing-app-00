@@ -1,27 +1,45 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
+import React from "react";
+import { HERO_BACKGROUND, FILTERS, PROPERTYLISTINGSAMPLE } from "../constants";
+import Pill from "../components/Pill";
+import PropertyCard from "../components/PropertyCard";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export default function Home() {
+const Home: React.FC = () => {
   return (
-    <div
-      className={`${geistSans.className} ${geistMono.className} flex items-center justify-center min-h-screen `}
-    >
-      <main className="">
-        {/* TODO: remove this and the associated styles from tailwind.config */}
-        <h1 className=" text-5xl font-bold text-primary font-mono overflow-hidden border-r-2 border-black whitespace-nowrap w-[10ch] animate-typing">
-          Welcomee
-        </h1>
-      </main>
+    <div className="space-y-12">
+
+      {/* Hero Section */}
+      <section
+        className="w-full h-96 bg-cover bg-center flex flex-col justify-center items-center text-white text-center"
+        style={{ backgroundImage: `url(${HERO_BACKGROUND})` }}
+      >
+        <h1 className="text-4xl font-bold mb-4">Find your favorite place here!</h1>
+        <p className="text-lg max-w-xl">
+          The best prices for over 2 million properties worldwide.
+        </p>
+      </section>
+
+      {/* Filter Section */}
+      <section className="max-w-7xl mx-auto px-4 flex flex-wrap gap-3">
+        {FILTERS.map((filter) => (
+          <Pill key={filter} label={filter} />
+        ))}
+      </section>
+
+      {/* Listing Section */}
+      <section className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {PROPERTYLISTINGSAMPLE.map((property) => (
+          <PropertyCard
+            key={property.name}
+            name={property.name}
+            image={property.image}
+            price={property.price}
+            rating={property.rating}
+          />
+        ))}
+      </section>
+
     </div>
   );
-}
+};
+
+export default Home;
