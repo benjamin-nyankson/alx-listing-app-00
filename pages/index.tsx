@@ -1,5 +1,5 @@
 import React from "react";
-import { HERO_BACKGROUND, FILTERS, PROPERTYLISTINGSAMPLE } from "../constants";
+import { HERO_BACKGROUND, FILTERS, PROPERTYLISTINGSAMPLE }
 import Pill from "../components/Pill";
 import PropertyCard from "../components/PropertyCard";
 
